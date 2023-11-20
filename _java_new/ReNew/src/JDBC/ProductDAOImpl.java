@@ -2,6 +2,7 @@ package JDBC;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class ProductDAOImpl implements DAO {
 	
@@ -20,8 +21,31 @@ public class ProductDAOImpl implements DAO {
 		DatabaseConnection dbc = DatabaseConnection.getInstance();
 		conn = dbc.getConnection();
 	}
-	
+
 	// sql 备巩 贸府
+	
+	@Override
+	public int insert(Product p) {
+		// db客 流立楷搬
+		System.out.println("insert DAO success!!");
+		query = "insert into product(pname , price , madeby) values(?,?,?)";
+		try {
+			pst = conn.prepareStatement(query);
+			
+			// ? 蔼阑 setting
+			pst.setString(1, p.getPname());
+			pst.setInt(2, p.getPrice());
+			pst.setString(3, p.getMadeby());
+			
+			return pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("insert error");
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	
 	
 }
