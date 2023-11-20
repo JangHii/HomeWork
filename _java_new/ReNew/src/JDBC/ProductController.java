@@ -1,5 +1,6 @@
 package JDBC;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ProductController {
@@ -56,12 +57,21 @@ public class ProductController {
 	}
 
 	private void detail() {
-		// TODO Auto-generated method stub
+		// 상품 상세 정보
+		System.out.println("상품번호 > ");
+		int pno = scan.nextInt();
+		Product p = svc.detail(pno);
+		System.out.println(p);
 		
 	}
 
 	private void list() {
-		// TODO Auto-generated method stub
+		// 상품전체 리스트
+		List<Product> list = svc.list();
+		
+		for(Product p : list) {
+			System.out.println(p);
+		}
 		
 	}
 
