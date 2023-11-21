@@ -1,0 +1,73 @@
+순서
+
+board TABLE 생성
+bno INT AI : 번호
+title VARCHAR: 제목 
+writer VARCHAR : 작성자
+content : 내용
+regdate : 작성일
+moddate : 수정일
+
+--------------------DB---------------------
+
+mysql -ujavaUser -pmysql
+SHOW DATABASES;
+USE javadb;
+
+
+CREATE TABLE board(
+bno INT AUTO_INCREMENT,
+title VARCHAR(200) NOT NULL,
+writer VARCHAR(200) NOT NULL,
+content TEXT,
+regdate DATETIME DEFAULT NOW(),
+moddate DATETIME DEFAULT NOW(),
+readcount INT 
+PRIMARY KEY(bno));
+
+
+ALTER TABLE board
+ADD COLUMN readCount INT DEFAULT 0;
+
+-----------------java----------------------
+
+BoardController 생성
+
+
+BoardMain 생성
+- new BoardController();
+
+
+BoardVO 생성
+- 매개변수
+- 생성자(메인값이 처리하는 생성자 모두 만들기)
+- getter / setter
+- tostring(null 처리되는 친구들 정리)
+
+
+BoardController
+인터페이스로 서비스 생성
+public BoardController() {
+scan = new Scanner(System.in);
+svc = new BoardServiceImpl(); // 임폴트로 BoardServiceImpl calls생성
+flag = true;
+printMenu();
+	}
+
+
+BoardServiceImpl
+dao implements 인터페이스 생성
+
+public BoardServiceImpl() {
+dao = new BoardDAOImpl(); // 임폴트로 BoardDAOImpl calls생성
+	}
+
+
+BoardDAOImpl
+private Connection conn ; // 자바유틸
+private PreparableStatement pst ; // 자바유틸
+public BoardDAOImpl() {
+// 데이터베이스 정보 정보 객체 생성
+DataBaseConnection dbc ; // DataBaseConnection calls생성
+	}
+
