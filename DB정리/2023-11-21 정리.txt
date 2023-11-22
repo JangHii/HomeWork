@@ -1,3 +1,71 @@
+====================2023 - 11 - 20====================
+mysql -uroot -pezen
+
+CREATE DATABASE javadb;
+
+// 유저생성
+// 아이디 javaUser
+// 비밀번호 mysql
+CRAATE USER 'javaUser'@'localhost' IDENTIFIED BY 'mysql';
+
+// 유저 권한 부여 구문
+// 해당 유저가 사용할수 있는 db를 설정
+GRANT ALL PRIVILEGES ON javadb.* TO 'javaUser'@'localhost'
+WITH GRANT OPTION;
+
+// 권한 적용
+FLUSH PRIVILEGES;
+
+
+mysql -ujavaUser -pmysql
+SHOEW DATABASES;
+USE javadb;
+
+
+1. DB생성
+2. 유저생성
+
+PRODUCT 테이블 생성
+pno : 제품증록번호 // AI , 기본키설정
+pname : 이름 // varchar(200)
+price : 가격 // int
+regdate : 등록일자 // datetime default now()
+madeby : 설명
+
+CREATE TABLE PRODUCT(
+pno INT NOT NULL AUTO_INCREMENT,
+pname VARCHAR(200) NOT NULL,
+price INT NOT NULL DEFAULT 0,
+regdate DATETIME DEFAULT NOW(),
+madeby text,
+PRIMARY KEY(pno));
+
+
+
+
+
+// 라이브러리 추가
+https://mvnrepository.com/
+mysql connector java 8.0.28  jar 다운
+
+DB 패키지 생성
+PRODUCT 객체 생성 파일
+...name VARCHAR(20) ...
+
+// 처음 매개변수 , 생성자 , getter/setter ...등
+VO(Value Object) : 실제 데이터를 입력할 객체( Product 객체가 VO에 해당)
+
+// Manager 역활
+Conteoller : 전체적인 제어를 담당 (화면과 service를 연결)
+Service : 다른 DB에 접속해야 할때 (conteoller로 가는 완벽한 객체를 생성하는 역할 (Service <-> DAO)
+
+DAO : DB와 실제 접속하는 객체
+
+
+
+
+====================2023 - 11 - 21====================
+
 순서
 
 board TABLE 생성
@@ -70,4 +138,61 @@ public BoardDAOImpl() {
 // 데이터베이스 정보 정보 객체 생성
 DataBaseConnection dbc ; // DataBaseConnection calls생성
 	}
+
+
+
+
+====================2023 - 11 - 22====================
+
+
+- readcount 추가 (db에 추가 구문으로 추가)
+- readcount는 detail 페이지를 선택하면 +1씩 증가됨
+
+board 테이블에 readcount를 추가하고
+detail 선택시 1씩 증가되게 설정
+list / detail 표시될때 같이 콘솔에 출력
+
+- 콘솔에서 받아오는 값은 없음(내부적으로 처리되는 값)
+- serviceImpl에서 시작
+- db는 순차적으로 진행
+(디테일 페이지를 누르는 순간)
+- 1. readcount를 먼저 update
+- 2. update 데이터를 콘솔에 출력
+
+puduct
+- 매개변수
+- 생성자
+- getter/setter
+- tostring
+
+ProductServiceImpl
+- 상세페이지 수정
+- DAO 추가
+
+DAO
+- 추가확인
+
+ProductDAOImpl
+- readcountUpdate 코드확인
+- 상세페이지 , 전체리스트 추가확인
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
