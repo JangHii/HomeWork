@@ -1,0 +1,23 @@
+board TABLE 생성
+bno INT AI : 번호
+title VARCHAR: 제목 
+writer VARCHAR : 작성자
+content : 내용
+regdate : 작성일
+moddate : 수정일
+
+CREATE TABLE board(
+bno INT AUTO_INCREMENT,
+title VARCHAR(200) NOT NULL,
+writer VARCHAR(200) NOT NULL,
+content TEXT,
+regdate DATETIME DEFAULT NOW(),
+moddate DATETIME DEFAULT NOW(),
+PRIMARY KEY(bno));
+
+
+
+조회수 readCOunt 생성
+- default 0을 반드시 설정 / 주지 않으면 값이 null / null은 연산이 안됨
+
+ALTER TABLE board ADD readcount INT DEFAULT 0;

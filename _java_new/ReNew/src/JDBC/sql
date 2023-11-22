@@ -1,0 +1,53 @@
+저장방법
+text 만들고
+ctrl+n 누르고 저장경로로 가서 저장
+
+----------------------------------
+
+mysql -uroot -pezen
+
+CREATE DATABASE javadb;
+
+// 유저생성
+// 아이디 javaUser
+// 비밀번호 mysql
+CRAATE USER 'javaUser'@'localhost' IDENTIFIED BY 'mysql';
+
+// 유저 권한 부여 구문
+// 해당 유저가 사용할수 있는 db를 설정
+GRANT ALL PRIVILEGES ON javadb.* TO 'javaUser'@'localhost'
+WITH GRANT OPTION;
+
+// 권한 적용
+FLUSH PRIVILEGES;
+
+
+mysql -ujavaUser -pmysql
+SHOEW DATABASES;
+USE javadb;
+
+
+1. DB생성
+2. 유저생성
+
+PRODUCT 테이블 생성
+pno : 제품증록번호 // AI , 기본키설정
+pname : 이름 // varchar(200)
+price : 가격 // int
+regdate : 등록일자 // datetime default now()
+madeby : 설명
+
+CREATE TABLE PRODUCT(
+pno INT NOT NULL AUTO_INCREMENT,
+pname VARCHAR(200) NOT NULL,
+price INT NOT NULL DEFAULT 0,
+regdate DATETIME DEFAULT NOW(),
+madeby text,
+PRIMARY KEY(pno));
+
+
+
+조회수 readCOunt 생성
+- default 0을 반드시 설정 / 주지 않으면 값이 null / null은 연산이 안됨
+
+ALTER TABLE product ADD readcount INT DEFAULT 0;
