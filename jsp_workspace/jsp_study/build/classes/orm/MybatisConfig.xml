@@ -18,6 +18,6 @@
     </environment>
   </environments>
   <mappers>
-    <mapper resource="mappter/boardMapper.xml"/>
+    <mapper resource="mapper/boardMapper.xml"/>
   </mappers>
 </configuration>
