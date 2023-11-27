@@ -1,4 +1,4 @@
--- 2023-11-23
+-- 2023-11-23 --
 
 CREATE TABLE `board` (
   `bno` int NOT NULL AUTO_INCREMENT,
@@ -10,3 +10,16 @@ CREATE TABLE `board` (
   `readcount` int DEFAULT '0',
   PRIMARY KEY (`bno`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+
+-- 2023-11-27 --
+
+CREATE TABLE member(
+id VARCHAR(100) NOT NULL,
+pwd VARCHAR(200) NOT NULL,
+email VARCHAR(200) NOT NULL,
+age Int DEFAULT 0,
+regdate DATETIME DEFAULT NOW(),
+lastlogin DATETIME DEFAULT NOW(),
+PRIMARY KEY(id));

@@ -153,24 +153,39 @@ public class BoardController extends HttpServlet {
 				log.info("edit >> {}",isOk > 0 ? "OK" : "Fail");
 				destPage = "list"; // 내부 list case로 이동
 				
-				
-				
-				
 			} catch (Exception e) {
 				log.info("edit error");
 				e.printStackTrace();
 			}
 			
 			break;
-			
-		}
 		
+			
+		case "remove" :
+			try {
+				
+				int bno = Integer.parseInt(request.getParameter("bno"));
+				log.info("remove check 1");
+				isOk = bsv.remove(bno);
+				log.info("remove >>> {}" , isOk > 0 ? "OK" : "fail");
+				
+				destPage = "list";
+				
+			} catch (Exception e) {
+				log.info("remove error");
+				e.printStackTrace();
+			}
+			
+			
+			break;
+		
+		}
 		// 목적지 주소로 데이터를 전달(RequestDispatcher)
 		
 		rdp = request.getRequestDispatcher(destPage);
 		rdp.forward(request, response); // 요청에 필요한 객체를 가지고 경로로전송
 		
-	}
+		}
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
