@@ -1,0 +1,64 @@
+jsp
+
+- 톰켓 9.0 = jdk11 = servlet 4.* // 이거를 사용할거임
+- 톰켓 8.5 = jdk1.8 = servlet 3.*
+
+다운후 톰캣을 내가 사용하는 폴더로 이동한다
+폴더 이동후 압축풀기
+
+- eclipse 자체의 설정
+- 프로젝트 설정
+
+mvnrepository 라이브러리 다운
+1. mysql - connector - java //DB
+2. jstl - 1.2 // JSP(화면관련)
+3. mybatis - 3.5.10 //DB
+4. log4j 관련
+log4j - api 2.17.2
+log4j - core 2.17.2 / 2.22.0
+log4j - slf4j -imple 2.17.2 / 1.7.36
+log4j - web 2.17.2
+slf4j - api 1.7.30 / 2.0.9
+
+- xml 설정 : 환경설정파일들
+- web.xml / log4j2.xml
+- db관련 xml mybatis xml
+- mapper관련 xml 설정
+
+package 생성
+- controller
+- service
+- repository(dao)
+- domain
+- orm
+- mapper
+
+Board 게시판
+DB설정 = orm 설정 xml파일 연결
+VO생성
+
+자바하위 = 패키지
+웹앱하위= 폴더
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

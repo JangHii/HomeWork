@@ -1,0 +1,93 @@
+Member 게시판
+
+DB설정
+id VARCHAR(100) NOT NULL //board writer와 외래키 설정
+pwd VARCHAR(200) NOT NULL
+email VARCHAR(200) NOT NULL
+age Int
+regdate DATETIME DEFAULT NOW()
+lastlogin DATETIME DEFAULT NOW()
+
+CREATE TABLE member(
+id VARCHAR(100) NOT NULL,
+pwd VARCHAR(200) NOT NULL,
+email VARCHAR(200) NOT NULL,
+age Int DEFAULT 0,
+regdate DATETIME DEFAULT NOW(),
+lastlogin DATETIME DEFAULT NOW(),
+PRIMARY KEY(id));
+
+------------------------------------------
+
+VO생성
+conteoller > service > dao > mapper
+----------------------------------------
+MemberVO - class로 생성
+맴버변수
+생성자
+getter/setter
+toString
+-----------------------------------------
+MemberController - web - servlet로 생성
+URL mappings - Edit - /member/* 수정
+service , doGet , doPost 체크확인
+
+생성된파일에 가서 주석 삭제
+맴버변수
+-로그객체 - import slf4kj
+-rdp
+-destpage
+-isOk
+-service
+1.MemberService > service(인터페이스)생성
+
+MemberController 생성자
+-MemberServiceImpl > service(클래스)생성
+
+doGet , doPost 초기화
+service(request, response);로 바꾸기
+------------------------------------------
+MemberServiceImpl
+-로그객체 - import slf4kj
+
+MemberDAO > repository(interface)로 생성
+MemberDAOImpl > repository(class)로 생성
+--------------------------------------------
+MemberDAOImpl
+-로그객체 - import slf4kj
+
+private SqlSession sql(import)처리
+--------------------------------------------
+MemberController
+service 생성자 확인
+--------------------------------------------
+webapp
+member(폴더생성)
+member안에 join.jsp파일 생성
+join파일 확인
+--------------------------------------------
+
+
+---------------------------------------------
+MybatisConfig
+- typeAlias , mapper 확인
+index.jsp
+-화면생성
+MemberController
+- case 확인
+MemberService
+MemberServiceImpl
+- 메서드 시작 확인
+MemberDAO
+MemberDAOImpl
+-메서드 처리 확인
+MemberMapper
+-DM 명령문 확인
+순서
+---------------------------------------------
+
+
+
+
+
+
