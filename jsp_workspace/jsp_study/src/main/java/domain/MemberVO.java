@@ -20,8 +20,14 @@ public class MemberVO {
 		this.id = id;
 		this.pwd = pwd;
 	}
-
 	
+	
+	public MemberVO(String pwd , String email , int age) {
+		this.pwd = pwd;
+		this.email = email;
+		this.age = age;
+	}
+
 	
 	// join , modify : id , pwd , email . age
 	public MemberVO(String id, String pwd, String email, int age) {

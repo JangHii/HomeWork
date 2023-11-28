@@ -39,13 +39,12 @@
 			<th>조회수</th>
 			<td>${bvo.readcount }</td>
 		</tr>
-			
-		
 
 	</table>
-	
+<c:if test="${ses.id eq bvo.writer }">
 <a href="/brd/modify?bno=${bvo.bno }"><button>수정</button></a>
 <a href="/brd/remove?bno=${bvo.bno }"><button>삭제</button></a>
+</c:if>
 <a href="/brd/list"><button>list</button></a>
 </body>
 </html>

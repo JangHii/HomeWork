@@ -15,7 +15,6 @@
 	<table border="1">
 		<tr>
 			<th>번호</th>
-			<td><input type="text" name="bno" value="${bvo.bno }" readonly="readonly"></td>
 			<td>${bvo.bno }</td>
 		</tr>
 		<tr>
@@ -29,16 +28,14 @@
 		<tr>
 			<th>내용</th>
 			<td><textarea rows="10" cols="30" name="content">${bvo.content }</textarea></td>
-		</tr>
-		
-			
-		
+		</tr>	
 
 	</table>
-<a href="/brd/modify?bno=${bvo.bno }"><button type="submit">수정</button></a>
 </form>
-	
-<a href="/brd/remove?bno=${bvo.bno }"><button>삭제</button></a>
+
+<a href="/brd/modify?bno=${bvo.bno }"><button type="submit">modify</button></a>
+<a href="/brd/remove?bno=${bvo.bno }"><button type="button">remove</button></a>
+
 <a href="/brd/list"><button>list</button></a>
 </body>
 </html>

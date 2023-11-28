@@ -11,10 +11,25 @@
 	</insert>
 
 	<select id="login" parameterType="mvo" resultType="mvo">
-		select * from member where id = #{id} and pwd = #{pwd}
+		select * from member 
+		where id = #{id} and pwd = #{pwd}
 	</select>
 	
 	<update id="last" parameterType="String">
-		update member set lastlogin = now() where id=#{id}
+		update member set lastlogin = now() 
+		where id=#{id}
 	</update>
+	
+	<select id="list" resultType="mvo">
+		select * from member
+	</select>
+	
+	<update id="up" parameterType="mvo" >
+		update member set pwd=#{pwd} , email=#{email} , age=#{age} 
+		where id=#{id}
+	</update>
+	
+	<delete id="det" parameterType="String">
+		DELETE FROM member WHERE id=#{id}
+	</delete>
 </mapper>

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import domain.MemberVO;
 import service.MemberService;
 import service.MemberServiceImpl;
+
 
 @WebServlet("/memb/*")
 public class MemberController extends HttpServlet {
@@ -134,16 +136,100 @@ public class MemberController extends HttpServlet {
 				e.printStackTrace();
 				log.info(">>> logout error");
 			}
-			
-			
 			break;
 			
 			
 			
+		case "list" :
+			try {
+				
+				log.info("list check 1");
+				List<MemberVO> list = msv.getList(); 
+				
+				log.info("list >>>> {}" + list);
+				
+				request.setAttribute("list", list);
+				destPage = "/member/list.jsp"; //이동되는곳
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info(">>> list error");
+			}
+			break;
 			
 			
 			
+		case "detail" :
 			
+			try {
+				// detail.jsp 화면에 현재 사용자의 정보를 띄우기
+				destPage = "/member/detail.jsp";
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info(">>> detail error");
+			}
+			break;
+			
+			
+			
+		case "modify" :
+			
+			try {
+
+				String id = request.getParameter("id");
+				String pwd = request.getParameter("pwd");
+				String email = request.getParameter("email");
+				int age = Integer.parseInt(request.getParameter("age"));
+				
+				MemberVO mvo = new MemberVO(id, pwd, email, age);
+				isOk = msv.modify(mvo);
+				log.info("modify >> {}" + (isOk > 0 ? "OK" : "Fail"));
+				
+				if(isOk > 0) {
+					request.setAttribute("msg_modify", "ok");
+				}
+				
+				HttpSession ses = request.getSession(); // 로그인한 정보
+				ses.invalidate(); //세션무효화 (세션끊기)
+				
+				destPage = "/index.jsp";
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				log.info(">>> modify error");
+			}
+			break;
+			
+			
+			
+		case "remove" :
+			
+			try {
+				
+				HttpSession ses = request.getSession(); 
+				MemberVO mvo = (MemberVO)ses.getAttribute("ses");
+				log.info("ses에서 추출한 mvo >>> {}" + mvo);
+				
+				String id = mvo.getId();
+				log.info(id);
+				isOk = msv.remove(id);
+				log.info("remove >>> {}" + (isOk > 0 ? "OK" : "Fail"));
+				
+				if(isOk > 0) {
+					request.setAttribute("msg_remove", -1);
+				}
+				
+				destPage = "/index.jsp";
+				
+			} catch (Exception e) {
+				log.info("remove error");
+				e.printStackTrace();
+			}
+			
+			
+			
+			break;
 			
 		}
 		
