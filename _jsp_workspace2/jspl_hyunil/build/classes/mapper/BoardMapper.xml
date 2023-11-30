@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="boardMapper">
+  
+    <!-- namespace는 mapper와 연결되는 daoimpl()을 연결하기 위한 이름 -->
+  	<!-- sql 구분별 생성 id를 통해 구문을 구분 daoimpl()의 메서드와 연결 -->
+  	<!-- daoimpl()   namespace.id   BoardMapper.list -->
+  	<!-- parameterType=매개변수 객체 , resultType=결과로 나가는 객체 -->
+  
+  
+  <!-- 글쓰기 -->
+  <insert id="add" parameterType="bvo">
+  	INSERT INTO board(title , writer , content)
+  		VALUES(#{title} , #{writer} , #{content})
+  </insert>
+  
+  <!-- 게시판리스트보기 -->
+  <select id="list" resultType="bvo">
+  	SELECT * FROM board ORDER BY bno DESC
+  </select>
+  
+  <!-- 조회수 올라가는거 -->
+  <update id="read" parameterType="int">
+  	UPDATE board SET readcount = readcount+1 WHERE bno=#{bno}
+  </update>
+  
+  <!-- 상세페이지보는거 -->
+  <select id="detail" parameterType="int" resultType="bvo">
+  	SELECT * FROM board WHERE bno=#{bno}
+  </select>
+  
+  <!-- 수정하는거 -->
+  <update id="up" parameterType="bvo">
+  	UPDATE board SET title=#{title} , content=#{content} , moddate=now()
+  	WHERE bno=#{bno}
+  </update>
+  
+  <!-- 삭제하는거 -->
+  <delete id="det" parameterType="int">
+  	DELETE FROM board WHERE bno=#{bno}
+  </delete>
+
+  
+  
+  
+  
+  </mapper>
