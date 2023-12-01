@@ -10,12 +10,12 @@ import domain.MemberVO;
 import orm.DatabaseBuilder;
 
 public class MemberDAOImpl implements MemberDAO {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
-	
+
 	// sql Session 객체
 	private SqlSession sql;
-	
+
 	public MemberDAOImpl() {
 		new DatabaseBuilder();
 		sql = DatabaseBuilder.getFactory().openSession();
@@ -25,9 +25,11 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int insert(MemberVO mvo) {
 		log.info(">>> join check 3");
-		// MemberMapper.reg		namespace.id
+		// MemberMapper.reg namespace.id
 		int isOk = sql.insert("MemberMapper.reg", mvo);
-		if(isOk > 0) sql.commit();
+		// update , insert , delete는 commit 필요
+		if (isOk > 0)
+			sql.commit();
 		return isOk;
 	}
 
@@ -41,8 +43,10 @@ public class MemberDAOImpl implements MemberDAO {
 	public int listLogin(String id) {
 		log.info(">>> listLogin check 3");
 		int isOk = sql.update("MemberMapper.last", id);
-		if(isOk > 0) sql.commit();
-		return isOk ;
+		// update , insert , delete는 commit 필요
+		if (isOk > 0)
+			sql.commit();
+		return isOk;
 	}
 
 	@Override
@@ -56,16 +60,19 @@ public class MemberDAOImpl implements MemberDAO {
 		log.info(">>> update check 3");
 		int isOk = sql.delete("MemberMapper.up", mvo);
 		// update , insert , delete는 commit 필요
-		if(isOk > 0) sql.commit();
-		return isOk ;
+		if (isOk > 0)
+			sql.commit();
+		return isOk;
 	}
 
 	@Override
 	public int delete(String id) {
 		log.info(">>> delete check 3");
-		int isOk = sql.delete("MemberMapper.det", id);
-		if(isOk > 0) sql.commit();
-		return isOk ;
+		int isOk = sql.delete("MemberMapper.del", id);
+		// update , insert , delete는 commit 필요
+		if (isOk > 0)
+			sql.commit();
+		return isOk;
 	}
-	
+
 }

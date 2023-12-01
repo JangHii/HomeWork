@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import com.mysql.cj.Query;
 
 import domain.BoardVO;
+import domain.PagingVO;
 import orm.DatabaseBuilder;
 import service.BoardServiceImpl;
 
@@ -39,9 +40,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> selectList() {
+	public List<BoardVO> selectList(PagingVO pgvo) {
 		log.info(">>>> list check 3");
-		return sql.selectList("BoardMapper.list");
+		return sql.selectList("BoardMapper.list" , pgvo);
 	}
 
 	@Override
@@ -72,6 +73,12 @@ public class BoardDAOImpl implements BoardDAO {
 		int isOk = sql.delete("BoardMapper.del" , bno);
 		if(isOk > 0) {sql.commit();}
 		return isOk;
+	}
+
+	@Override
+	public int totalCount() {
+		log.info(">>>> totalCount check 3");
+		return sql.selectOne("BoardMapper.total");
 	}
 	
 	

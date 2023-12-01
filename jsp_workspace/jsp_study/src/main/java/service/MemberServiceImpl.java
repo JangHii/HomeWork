@@ -10,12 +10,12 @@ import repository.MemberDAO;
 import repository.MemberDAOImpl;
 
 public class MemberServiceImpl implements MemberService {
-	
+
 	// 로그객체
 	private static final Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
-	
+
 	private MemberDAO mdao; // repository > interface로 생성
-	
+
 	public MemberServiceImpl() {
 		mdao = new MemberDAOImpl();
 	}
@@ -56,6 +56,5 @@ public class MemberServiceImpl implements MemberService {
 		log.info(">>>> remove check 2");
 		return mdao.delete(id);
 	}
-	
-	
+
 }

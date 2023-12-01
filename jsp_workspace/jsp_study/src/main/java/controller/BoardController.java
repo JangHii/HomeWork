@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.BoardVO;
+import domain.PagingVO;
+import handler.PagingHandler;
 import service.BoardService;
 import service.BoardServiceImpl;
 
@@ -89,11 +91,25 @@ public class BoardController extends HttpServlet {
 				// 컨트롤러에서 db로 전체 리스트 요청
 				// 전체리스트를 가지고 list.jsp에 뿌리기
 				log.info("list check 1");
-				List<BoardVO> list = bsv.getList();
+				PagingVO pgvo = new PagingVO(); // 페이지:1/게시물갯수:10/번지:0
 				
+				if(request.getParameter("pageNo") != null) {
+					int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+					int qty = Integer.parseInt(request.getParameter("qty"));
+					log.info(">>>>>> pageNo / qty" + pageNo + "/" + qty);
+					pgvo = new PagingVO(pageNo , qty);
+				}
+				
+				List<BoardVO> list = bsv.getList(pgvo);
 				log.info("list >>>> {}" + list);
+				
+				int totalCount = bsv.getTotalCount(); //DB에서 전체 게시글수 가져오기
+				log.info("totalCount>>>>>>>>>>>{}" + totalCount);
+				PagingHandler ph = new PagingHandler(pgvo, totalCount);
+				
 				// list를 jsp로 전송
 				request.setAttribute("list", list);
+				request.setAttribute("ph", ph);
 				destPage = "/board/list.jsp";
 				
 			} catch (Exception e) {

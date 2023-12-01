@@ -30,6 +30,26 @@
 	</c:forEach>
 </table>
 
+<!-- 페이지네이션 표시구역  -->
+<div>
+
+<!-- prev(이전) -->
+<c:if test="${ph.prev }">
+<a href="brd/list?pageNo=${ph.startPage-1 }&qty=${ph.pgvo.qty }"> ◁ 이전 </a>
+</c:if>
+
+<!-- paging -->
+<c:forEach begin="${ph.startPage }" end="${ph.endPage }" var="i">
+<a href="/brd/list?pageNo=${i }&qty=${ph.pgvo.qty}"> ${i} </a>
+</c:forEach>
+
+<!-- next(다음) -->
+<c:if test="${ph.next }">
+<a href="/brd/list?pageNo=${ph.endPage+1 }&qty=${ph.pgvo.qty}"> 다음 ▷ </a>
+</c:if>
+</div>
+
+
 <a href="/brd/register"><button>register</button></a>
 <a href="/index.jsp"><button>index</button></a>
 </body>
