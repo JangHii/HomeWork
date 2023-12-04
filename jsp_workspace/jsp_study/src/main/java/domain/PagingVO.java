@@ -25,11 +25,13 @@ public class PagingVO {
 	
 	
 	
-	public PagingVO(int pageNo , int qty) {
+	public PagingVO(int pageNo , int qty , String type , String Keyword) {
 		
 		// 페이지네이션을 클릭하면 설정되는 값
 		this.pageNo = pageNo ; 
-		this.qty = qty ; 
+		this.qty = qty ;
+		this.type = type ;
+		this.Keyword = Keyword ;
 	}
 	
 	
@@ -38,6 +40,12 @@ public class PagingVO {
 		
 		// 1페이지 = 0 / 2페이지 = 10 / 3페이지 = 20
 		return (pageNo-1)*qty; // 0*10이 되기위한 계산값
+	}
+	
+	
+	
+	public String[] getTypeToArray() {
+		return this.type == null ? new String[] {} : this.type.split("");
 	}
 
 	

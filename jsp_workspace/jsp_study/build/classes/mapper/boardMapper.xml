@@ -14,7 +14,9 @@
 	</insert>
 	
 	<select id="list" parameterType="pgvo" resultType="bvo">
-		select * from board order by bno desc limit #{pageStart} , #{qty}
+		select * from board 
+		<include refid="search"></include>
+		order by bno desc limit #{pageStart} , #{qty}
 	</select>
 
 	<update id="read" parameterType="int">
@@ -25,6 +27,7 @@
 		select * from board where bno = #{bno}
 	</select>
 	
+	
 	<update id="up" parameterType="bvo">
 		update board set title = #{title} , content = #{content} , moddate = now()
 		where bno = #{bno}
@@ -34,7 +37,34 @@
 		delete from board where bno = #{bno}
 	</delete>
 	
-	<select id="total" resultType="int">
-		SELECT COUNT(bno) FROM board ;
+	<select id="total" parameterType="pgvo" resultType="int">
+		SELECT COUNT(bno) FROM board <include refid="search"></include>
 	</select>
+	
+	<!-- 같은 구문을 편하게 쓰기위해 sql을 사용 -->
+	<!-- 생성자같은느낌 -->
+	<sql id="search">
+		<if test="type != null">
+			<trim prefix="where (" suffix=")" prefixOverrides="or"> <!-- prefix와 같은값 구문이 다 돌아가면 없애달라 -->
+				<foreach collection="typeToArray" item="type">
+					<trim prefix=" or ">
+						<choose>
+							<when test="type == 't'.toString() ">
+								<!-- concat 함수 사용하여 붙이기 -->
+								title like concat ('%',#{Keyword},'%')
+							</when>
+							<when test="type == 'c'.toString() ">
+								content like concat ('%',#{Keyword},'%')
+							</when>
+							<when test="type == 'w'.toString() ">
+								writer like concat ('%',#{Keyword},'%')
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim>
+		</if>
+	</sql>
+	
+	
   </mapper>

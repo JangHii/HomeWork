@@ -13,8 +13,8 @@ import repository.BoardDAOImpl;
 public class BoardServiceImpl implements BoardService {
 
 	private static final Logger log = LoggerFactory.getLogger(BoardServiceImpl.class);
-	private BoardDAO bdao; //interface로 생성
-	
+	private BoardDAO bdao; // interface로 생성
+
 	public BoardServiceImpl() {
 		bdao = new BoardDAOImpl(); // casll로 생성 bdao구현 객체 생성
 	}
@@ -35,7 +35,7 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO getDetail(int bno) {
 		log.info(">>>> detail check 2");
 		// detail 체크시 readcount +1
-		int isOk =  bdao.readcountUpdate(bno);
+		int isOk = bdao.readcountUpdate(bno);
 		return bdao.getDetail(bno);
 	}
 
@@ -52,9 +52,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getTotalCount() {
+	public int getTotalCount(PagingVO pgvo) {
 		log.info(">>>> getTotalCount check 2");
-		return bdao.totalCount();
+		return bdao.totalCount(pgvo);
 	}
-	
+
 }

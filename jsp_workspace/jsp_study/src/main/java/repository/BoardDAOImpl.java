@@ -76,9 +76,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int totalCount() {
+	public int totalCount(PagingVO pgvo) {
 		log.info(">>>> totalCount check 3");
-		return sql.selectOne("BoardMapper.total");
+		return sql.selectOne("BoardMapper.total" , pgvo);
 	}
 	
 	
