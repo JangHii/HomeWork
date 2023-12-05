@@ -8,7 +8,7 @@ public class CommentVO {
 	
 	private int cno ;
 	private int bno ;
-	private String wtiter ;
+	private String writer ;
 	private String content ;
 	private String regdate ;
 	
@@ -17,9 +17,9 @@ public class CommentVO {
 
 	
 	// post : bno , writer , content
-	public CommentVO(int bno, String wtiter, String content) {
+	public CommentVO(int bno, String writer, String content) {
 		this.bno = bno;
-		this.wtiter = wtiter;
+		this.writer = writer;
 		this.content = content;
 	}
 	
@@ -31,10 +31,10 @@ public class CommentVO {
 	}
 	
 	
-	public CommentVO(int cno, int bno, String wtiter, String content, String regdate) {
+	public CommentVO(int cno, int bno, String writer, String content, String regdate) {
 		this.cno = cno;
 		this.bno = bno;
-		this.wtiter = wtiter;
+		this.writer = writer;
 		this.content = content;
 		this.regdate = regdate;
 	}
@@ -64,13 +64,13 @@ public class CommentVO {
 	}
 
 
-	public String getWtiter() {
-		return wtiter;
+	public String getwriter() {
+		return writer;
 	}
 
 
-	public void setWtiter(String wtiter) {
-		this.wtiter = wtiter;
+	public void setwriter(String writer) {
+		this.writer = writer;
 	}
 
 
@@ -96,7 +96,7 @@ public class CommentVO {
 
 	@Override
 	public String toString() {
-		return "CommentVO [cno=" + cno + ", bno=" + bno + ", wtiter=" + wtiter + ", content=" + content + ", regdate="
+		return "CommentVO [cno=" + cno + ", bno=" + bno + ", writer=" + writer + ", content=" + content + ", regdate="
 				+ regdate + "]";
 	}
 	
