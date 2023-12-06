@@ -14,6 +14,8 @@ public interface CommentService {
 
 	int remove(int cno);
 
+	int modify(CommentVO cvo);
+
 
 
 }

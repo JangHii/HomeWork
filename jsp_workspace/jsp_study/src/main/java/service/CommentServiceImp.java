@@ -21,20 +21,26 @@ public class CommentServiceImp implements CommentService {
 
 	@Override
 	public int post(CommentVO cvo) {
-		log.info(">>>> post check 2");
+		log.info(">>>> comment post check 2");
 		return cdao.insert(cvo);
 	}
 
 	@Override
 	public List<CommentVO> getList(int bno) {
-		log.info(">>>> getList check 2");
+		log.info(">>>> comment getList check 2");
 		return cdao.getList(bno);
 	}
 
 	@Override
 	public int remove(int cno) {
-		log.info(">>>> cno check 2");
+		log.info(">>>> comment remove check 2");
 		return cdao.delete(cno);
+	}
+
+	@Override
+	public int modify(CommentVO cvo) {
+		log.info(">>>> comment modify check 2");
+		return cdao.modify(cvo);
 	}
 
 

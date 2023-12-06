@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>List page</title>
+<link href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script type="text/javascript"></script>
 </head>
 <body>
 
@@ -31,7 +33,7 @@
 	</div>
 
 
-	<table border="1">
+	<table class="table table-dark table-hover">
 		<tr>
 			<th>번호</th>
 			<th>제목</th>

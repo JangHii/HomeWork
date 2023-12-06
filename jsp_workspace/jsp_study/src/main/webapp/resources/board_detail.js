@@ -22,7 +22,7 @@ function spreadCommentList(result){ // result => 댓글 리스트
         let html = `<div>`;
         html += `<div> ${result[i].cno}, ${result[i].bno}, ${result[i].writer} , ${result[i].regdate}</div>`;
         html += `<div>`;
-        html += `<input type = "text" value="${result[i].content}" calss=cmtText>`;
+        html += `<input type = "text" value="${result[i].content}" class=cmtText>`;
         html += `<button type = "button" data-cno="${result[i].cno}" class="cmtModBtn">수정</button>`;
         html += `<button type = "button" data-cno="${result[i].cno}" class="cmtDelBtn">삭제</button>`;
         html += `</div></div><br><hr>`;
@@ -65,6 +65,7 @@ document.getElementById('cmtAddBtn').addEventListener('click',()=>{
             console.log(result);
             if(result > 0){
                 alert('댓글등록성공~~~~~~~~~!!!!!!!!!!!!');
+                document.getElementById('cmtText').value='';
             }
             // 댓글 출력
             printCommentList(bnoVal);
@@ -140,6 +141,22 @@ document.addEventListener('click',(e)=>{
             //result = isOk
             if(result > 0){
                 alert('댓글삭제 성공~!!');
+                printCommentList(bnoVal);
+            }
+        })
+    }
+    // 수정버튼이 클릭되면
+    if(e.target.classList.contains('cmtModBtn')){
+        let cnoVal = e.target.dataset.cno ;
+        console.log(cnoVal);
+        let div = e.target.closest('div') // closest : 타겟을 기준으로 가장 가까운 div찾기 (나를 포함하고있는)
+        console.log(div);
+        let cmtText = div.querySelector('.cmtText').value;
+        console.log(cmtText);
+
+        updateCommentFromServer(cnoVal , cmtText).then(result =>{
+            if(result > 0 ){
+                alert('댓글수정 성공~!!');
                 printCommentList(bnoVal);
             }
         })

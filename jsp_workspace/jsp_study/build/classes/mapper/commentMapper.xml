@@ -12,14 +12,18 @@
   	
   	<select id="list" resultType="cvo">
   		select * from comment where bno=#{bno}
+  		order by cno desc
   	</select>
   	
-  	<delete id="del" parameterType="String">
+  	<delete id="del">
   		delete from comment where cno=#{cno}
   	</delete>
   	
   	
-  	
+  	<update id="mod" parameterType="cvo">
+  		update comment set content=#{content} , regdata3 = now()
+  		where cno=#{cno}
+  	</update>
   	
   	
   	

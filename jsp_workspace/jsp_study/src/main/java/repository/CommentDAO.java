@@ -12,4 +12,6 @@ public interface CommentDAO {
 
 	int delete(int cno);
 
+	int modify(CommentVO cvo);
+
 }

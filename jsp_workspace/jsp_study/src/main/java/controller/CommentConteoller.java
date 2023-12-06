@@ -130,8 +130,9 @@ public class CommentConteoller extends HttpServlet {
 			
 			try {
 				
-				int cno = Integer.parseInt(request.getParameter("cno"));
+				int cno = Integer.parseInt(request.getParameter("cnoVal"));
 				log.info("comment remove check1");
+				
 				isOk = csv.remove(cno);
 				log.info("remove >>>{} " , isOk > 0 ? "OK": "Fail");
 				
@@ -144,7 +145,39 @@ public class CommentConteoller extends HttpServlet {
 			}
 			
 			
+		case "modify" :
 			
+			try {
+				
+				StringBuffer sb = new StringBuffer();
+				String line = "";
+				BufferedReader br = request.getReader(); // 댓글 객체
+				
+				while((line = br.readLine()) != null) { // 한줄을 읽어서 가져오는 근데 빈공간이 아닌거
+					sb.append(line);
+				}
+				
+				JSONParser parser = new JSONParser();
+				JSONObject jsonObj = (JSONObject)parser.parse(sb.toString());
+				
+				int cno = Integer.parseInt(jsonObj.get("cno").toString());
+				String content = jsonObj.get("content").toString();
+				CommentVO cvo = new CommentVO(cno, content);
+				
+				log.info("commentVO >>>>> {}" , cvo);
+				isOk = csv.modify(cvo);
+				log.info("isOk >>>" + ((isOk > 0 )? "OK" : "Fail"));
+				
+				PrintWriter out = response.getWriter();
+				out.print(isOk);
+				
+				
+				
+				
+			} catch (Exception e) {
+				log.info(">>>>>>> comment remove error");
+				e.printStackTrace();
+			}
 			
 			
 			
