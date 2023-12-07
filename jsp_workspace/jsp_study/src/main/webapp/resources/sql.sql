@@ -25,7 +25,8 @@ lastlogin DATETIME DEFAULT NOW(),
 PRIMARY KEY(id));
 
 
---2023-12-04 --
+
+-- 2023-12-04 --
 
 CREATE TABLE comment(
 cno INT AUTO_INCREMENT,
@@ -34,3 +35,9 @@ wtiter VARCHAR(100) DEFAULT "unKnoen",
 content VARCHAR(1000) NOT NULL,
 regdate DATETIME DEFAULT NOW(),
 PRIMARY KEY(cno));
+
+
+
+-- 2023-12-07 --
+
+ALTER TALE board ADD imageFile VARCHAR(100);

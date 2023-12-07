@@ -6,15 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>List page</title>
-<link href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <script type="text/javascript"></script>
 </head>
 <body>
 
 	<!-- search line  -->
+
 	<div>
+
 		<form action="/brd/list" method="get">
-		<c:set value="${ph.pgvo.type }" var="typed"></c:set>
+			<c:set value="${ph.pgvo.type }" var="typed"></c:set>
 			<select name="type">
 				<option ${typed == null ? 'selected' : '' }>Choose...</option>
 				<option value="t" ${typed eq 't' ? 'selected' : '' }>title</option>
@@ -24,9 +28,10 @@
 				<option value="tw" ${typed eq 'tw' ? 'selected' : '' }>title&writer</option>
 				<option value="wc" ${typed eq 'wc' ? 'selected' : '' }>writer&content</option>
 				<option value="twc" ${typed eq 'twc' ? 'selected' : '' }>title&writer&content</option>
-			</select> <input type="text" name="keyword" placeholder="Search" value="${ph.pgvo.keyword }"> <input
-				type="hidden" name="pageNo" value="1"> <input
-				type="hidden" name="qty" value="${ph.pgvo.qty }">
+			</select> <input type="text" name="keyword" placeholder="Search"
+				value="${ph.pgvo.keyword }"> <input type="hidden"
+				name="pageNo" value="1"> <input type="hidden" name="qty"
+				value="${ph.pgvo.qty }">
 			<button type="submit">Search</button>
 			<span>${ph.totalCount }</span>
 		</form>
@@ -36,16 +41,19 @@
 	<table class="table table-dark table-hover">
 		<tr>
 			<th>번호</th>
+			<th>썸네일</th>
 			<th>제목</th>
 			<th>작성자</th>
 			<th>등록일</th>
 			<th>조회수</th>
 		</tr>
+
 		<!-- DB에서 가져온 리스트를 c:foreach를 통해 반복 -->
 		<c:forEach items="${list }" var="bvo">
 			<tr>
+
 				<td><a href="/brd/detail?bno=${bvo.bno }">${bvo.bno }</a></td>
-				<td><a href="/brd/detail?bno=${bvo.bno }">${bvo.title }</a></td>
+				<td><a href="/brd/detail?bno=${bvo.bno }"><img alt="" src="/_fileUpload/th_${bvo.imageFile }">${bvo.title }</a></td>
 				<td>${bvo.writer }</td>
 				<td>${bvo.regdate }</td>
 				<td>${bvo.readcount }</td>
@@ -59,18 +67,22 @@
 
 		<!-- prev(이전) -->
 		<c:if test="${ph.prev }">
-			<a href="brd/list?pageNo=${ph.startPage-1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
+			<a
+				href="brd/list?pageNo=${ph.startPage-1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
 				◁ 이전 </a>
 		</c:if>
 
 		<!-- paging -->
 		<c:forEach begin="${ph.startPage }" end="${ph.endPage }" var="i">
-			<a href="/brd/list?pageNo=${i }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}"> ${i} </a>
+			<a
+				href="/brd/list?pageNo=${i }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
+				${i} </a>
 		</c:forEach>
 
 		<!-- next(다음) -->
 		<c:if test="${ph.next }">
-			<a href="/brd/list?pageNo=${ph.endPage+1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
+			<a
+				href="/brd/list?pageNo=${ph.endPage+1 }&qty=${ph.pgvo.qty}&type=${ph.pgvo.type}&keyword=${ph.pgvo.keyword}">
 				다음 ▷ </a>
 		</c:if>
 	</div>

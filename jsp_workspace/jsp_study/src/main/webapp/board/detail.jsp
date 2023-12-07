@@ -8,7 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Detail page</h1>
+	<h1>게시물보기</h1>
+	
+	<div>
+	<img alt="" src="/_fileUpload/${bvo.imageFile }">
+	</div>
 
 	<table border="1">
 		<tr>
@@ -45,13 +49,13 @@
 		<a href="/brd/modify?bno=${bvo.bno }"><button>수정</button></a>
 		<a href="/brd/remove?bno=${bvo.bno }"><button>삭제</button></a>
 	</c:if>
-	<a href="/brd/list"><button>list</button></a>
+	<a href="/brd/list"><button>리스트</button></a>
 
 	<!-- comment line (댓글등록) -->
 	<hr>
 	<div>
-		comment line <br> <input type="text" id="cmtWriter"
-			value="${ses.id }" readonly="readonly"><br> 
+		comment line <br> 
+		<input type="text" id="cmtWriter" value="${ses.id }" readonly="readonly"><br> 
 			<input type="text" id="cmtText" placeholder="댓글을 입력해주세요...">
 		<button type="button" id="cmtAddBtn">댓글등록</button>
 	</div>
@@ -70,6 +74,7 @@
 
 	<script type="text/javascript">
 		const bnoVal = `<c:out value="${bvo.bno}" />`;
+		const userId = `<c:out value="${ses.id}" />`;
 		console.log(bnoVal);
 	</script>
 

@@ -21,7 +21,7 @@
   	
   	
   	<update id="mod" parameterType="cvo">
-  		update comment set content=#{content} , regdata3 = now()
+  		update comment set content=#{content} , regdate = now()
   		where cno=#{cno}
   	</update>
   	

@@ -17,14 +17,18 @@ function spreadCommentList(result){ // result => 댓글 리스트
     console.log("comment List >>" + result);
     let div = document.getElementById("commentLine");
     div.innerHTML = "" ; // 원래 만들어뒀던 구조 지우기
+
     for(let i = 0 ; i < result.length ; i++){
         
         let html = `<div>`;
         html += `<div> ${result[i].cno}, ${result[i].bno}, ${result[i].writer} , ${result[i].regdate}</div>`;
         html += `<div>`;
         html += `<input type = "text" value="${result[i].content}" class=cmtText>`;
+        if(result[i].writer == userId){
+        // d수정 버튼을 작성자와 로그인한 사용자만 보이게
         html += `<button type = "button" data-cno="${result[i].cno}" class="cmtModBtn">수정</button>`;
         html += `<button type = "button" data-cno="${result[i].cno}" class="cmtDelBtn">삭제</button>`;
+        }
         html += `</div></div><br><hr>`;
         div.innerHTML += html; // 각 댓글 객체를 누적해서 담기
     }
