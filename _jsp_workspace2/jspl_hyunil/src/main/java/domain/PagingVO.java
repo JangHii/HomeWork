@@ -10,7 +10,7 @@ public class PagingVO {
 	
 	// 검색에 관한 멤버변수 추가
 	private String type; //검색대상
-	private String Keyword; //검색어
+	private String keyword; //검색어
 	
 	
 	public PagingVO() { //처음 리스트로 들어갔을때 규칙
@@ -21,13 +21,13 @@ public class PagingVO {
 	}
 	
 	
-	public PagingVO(int pageNo , int qty , String type , String Keyword) {
+	public PagingVO(int pageNo , int qty , String type , String keyword) {
 		
 		// 페이지네이션을 클릭하면 설정되는 값
 		this.pageNo = pageNo;
 		this.qty = qty;
 		this.type = type;
-		this.Keyword = Keyword;
+		this.keyword = keyword;
 	}
 	
 	
@@ -72,19 +72,20 @@ public class PagingVO {
 	}
 
 
+
 	public String getKeyword() {
-		return Keyword;
+		return keyword;
 	}
 
 
 	public void setKeyword(String keyword) {
-		Keyword = keyword;
+		this.keyword = keyword;
 	}
 
 
 	@Override
 	public String toString() {
-		return "PagingVO [pageNo=" + pageNo + ", qty=" + qty + ", type=" + type + ", Keyword=" + Keyword + "]";
+		return "PagingVO [pageNo=" + pageNo + ", qty=" + qty + ", type=" + type + ", keyword=" + keyword + "]";
 	}
 	
 	

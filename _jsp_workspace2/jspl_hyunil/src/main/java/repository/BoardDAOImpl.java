@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 
 import domain.BoardVO;
+import domain.PagingVO;
 import orm.DatabaseBuilder;
 import service.BoardServiceImpl;
 
@@ -41,9 +42,9 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> selecList() {
+	public List<BoardVO> selecList(PagingVO pgvo) {
 		log.info(">>>>>> selecList check 3 <<<<<<");
-		return sql.selectList("boardMapper.list");
+		return sql.selectList("boardMapper.list" , pgvo);
 	}
 
 	@Override
@@ -79,14 +80,20 @@ public class BoardDAOImpl implements BoardDAO {
 	public int delete(int bno) {
 		log.info(">>>>>> delete check 3 <<<<<<");
 		
-		int isOk = sql.delete("boardMapper.det", bno);
+		int isOk = sql.delete("boardMapper.del", bno);
 		if(isOk > 0) {
 			sql.commit();
 		}
 		return isOk;
 	}
-	
-	
+
+	@Override
+	public int totalcount(PagingVO pgvo) {
+		log.info(">>>>>> totalcount check 3 <<<<<<");
+		return sql.selectOne("boardMapper.total" , pgvo);
+	}
+
+
 	
 	
 	
