@@ -37,9 +37,14 @@
 		delete from board where bno = #{bno}
 	</delete>
 	
+	<select id="FaileName" resultType="String">
+		select imageFile from board where bno=#{bno}
+	</select>
+	
 	<select id="total" parameterType="pgvo" resultType="int">
 		SELECT COUNT(bno) FROM board <include refid="search"></include>
 	</select>
+	
 	
 	<!-- 같은 구문을 편하게 쓰기위해 sql을 사용 -->
 	<!-- 생성자같은느낌 -->

@@ -11,7 +11,6 @@ public class BoardVO {
 	private int readcount ;
 	private String imageFile ;
 	
-	
 	public BoardVO() {}
 
 
@@ -30,6 +29,8 @@ public class BoardVO {
 		this.writer = writer;
 		this.regdate = regdate;
 		this.readcount = readcount;
+
+		
 	}
 
 
@@ -135,23 +136,14 @@ public class BoardVO {
 	}
 
 
+
 	@Override
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regdate="
 				+ regdate + ", moddate=" + moddate + ", readcount=" + readcount + ", imageFile=" + imageFile + "]";
 	}
 
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

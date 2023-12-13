@@ -19,6 +19,10 @@
   		delete from comment where cno=#{cno}
   	</delete>
   	
+  	<delete id="delAll">
+  		delete from comment where bno=#{bno}
+  	</delete>
+  	
   	
   	<update id="mod" parameterType="cvo">
   		update comment set content=#{content} , regdate = now()

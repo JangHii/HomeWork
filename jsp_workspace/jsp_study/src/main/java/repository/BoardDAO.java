@@ -21,4 +21,7 @@ public interface BoardDAO {
 
 	int totalCount(PagingVO pgvo);
 
+	String getFaileName(int bno);
+
+
 }

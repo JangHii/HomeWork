@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<h1>Board Register Page</h1>
+	<h1>글쓰기 페이지</h1>
 
 	<form action="/brd/insert" method="post" enctype="multipart/form-data">
 		제목 : <input type="text" name="title"><br> 작성자 : <input

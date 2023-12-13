@@ -356,6 +356,20 @@ public class BoardController extends HttpServlet {
 
 				int bno = Integer.parseInt(request.getParameter("bno"));
 				log.info("remove check 1");
+				
+				// 파일삭제
+				savePath = getServletContext().getRealPath("/_fileUpload");
+				String imageFileName = bsv.getFileName(bno);
+				File fileDir = new File(savePath);
+				
+				int isDel = 0; 
+				if(imageFileName != null) {
+					FileRemoveHandler fh = new FileRemoveHandler();
+					// 해당 파일과 썸네일이 같이 삭제
+					isDel = fh.deleteFile(imageFileName, savePath);
+				}
+				
+				// 댓글삭제
 				isOk = bsv.remove(bno);
 				log.info("remove >>> {}", isOk > 0 ? "OK" : "fail");
 

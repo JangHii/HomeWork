@@ -8,15 +8,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Member List Page (관리자용)</h1>
+<h1>회원 리스트 (관리자용)</h1>
 <table border="1">
 	<tr>
-		<th>ID</th>
-		<th>PW</th>
-		<th>E-mail</th>
-		<th>Age</th>
-		<th>Reg-date</th>
-		<th>Last-login</th>
+		<th>아이디</th>
+		<th>비밀번호</th>
+		<th>이메일</th>
+		<th>나이</th>
+		<th>회원가입한 날짜</th>
+		<th>마지막로그인날짜</th>
 	</tr>
 	
 	<c:forEach items="${list }" var="mvo">

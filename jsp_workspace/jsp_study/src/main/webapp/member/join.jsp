@@ -8,14 +8,14 @@
 </head>
 <body>
 
-<h1>Join Page</h1>
+<h1>회원가입</h1>
 <br>
 <form action="memb/register" method="post">
-	ID : <input type="text" name="id"><br>
-	PassWord : <input type="password" name="pwd"><br>
-	E-Mail : <input type="text" name="email"><br>
-	Age : <input type="text" name="age"><br>
-	<button type="submit">join</button>
+	아이디 : <input type="text" name="id"><br>
+	비밀번호 : <input type="password" name="pwd"><br>
+	이메일 : <input type="text" name="email"><br>
+	나이 : <input type="text" name="age"><br>
+	<button type="submit">회원가입하기</button>
 </form>
 
 </body>

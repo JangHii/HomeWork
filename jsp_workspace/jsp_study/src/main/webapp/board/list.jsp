@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>List page</title>
+<title>게시판 리스트</title>
 <link
 	href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -53,7 +53,9 @@
 			<tr>
 
 				<td><a href="/brd/detail?bno=${bvo.bno }">${bvo.bno }</a></td>
-				<td><a href="/brd/detail?bno=${bvo.bno }"><img alt="" src="/_fileUpload/th_${bvo.imageFile }">${bvo.title }</a></td>
+				<td><a href="/brd/detail?bno=${bvo.bno }">
+				<img alt="" src="/_fileUpload/th_${bvo.imageFile }"></a></td>
+				<td><a href="/brd/detail?bno=${bvo.bno }">${bvo.title }</a></td>
 				<td>${bvo.writer }</td>
 				<td>${bvo.regdate }</td>
 				<td>${bvo.readcount }</td>
@@ -88,7 +90,7 @@
 	</div>
 
 
-	<a href="/brd/register"><button>register</button></a>
-	<a href="/index.jsp"><button>index</button></a>
+	<a href="/brd/register"><button>글쓰기</button></a>
+	<a href="/index.jsp"><button>홈으로</button></a>
 </body>
 </html>

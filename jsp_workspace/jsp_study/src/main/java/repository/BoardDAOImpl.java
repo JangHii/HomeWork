@@ -80,6 +80,13 @@ public class BoardDAOImpl implements BoardDAO {
 		log.info(">>>> totalCount check 3");
 		return sql.selectOne("BoardMapper.total" , pgvo);
 	}
+
+	@Override
+	public String getFaileName(int bno) {
+		return sql.selectOne("BoardMapper.FaileName", bno);
+	}
+
+
 	
 	
 }

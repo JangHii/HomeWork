@@ -19,6 +19,9 @@ public interface BoardService {
 
 	int getTotalCount(PagingVO pgvo);
 
+	String getFileName(int bno);
+
+
 
 
 }

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Member Detail Page</h1>
+	<h1>회원정보 수정</h1>
 	
 <form action="/memb/modify" method="post">	
 	ID : <input type="text" name="id" value="${ses.id }" readonly="readonly"><br>
