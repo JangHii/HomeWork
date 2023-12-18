@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://mybatis.org/mybatis-3/ko/getting-started.html 에서 가져와야한다. -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- MemberDAO의 객체를 인지하겟다 -->
+  <mapper namespace="com.ezen.www.repository.MemberDAO">
+  
+  	<select id="getUser" resultType="com.ezen.www.domain.MemberVO">
+  		SELECT * FROM member
+  		WHERE id=#{id}
+  	</select>
+  	
+  	<insert id="insrt">
+  		INSERT INTO member (id , pw , name , email , home , age)
+  		VALUES (#{id} , #{pw} , #{name} , #{email} , #{home}, #{age})
+  	</insert>
+  
+  
+  <update id="lastLogin">
+  	UPDATE member
+  	SET last_login = NOW()
+  	WHERE id=#{id}
+  </update>
+  
+  
+  <update id="modify">
+  	UPDATE member
+  	SET 
+  	name=#{name},
+  	email=#{email},
+  	home=#{home},
+  	age=#{age}
+  	WHERE id=#{id}
+  </update>
+  
+  
+  
+  
+  
+  
+  </mapper>

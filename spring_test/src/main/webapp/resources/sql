@@ -1,0 +1,77 @@
+
+<artifactId>lombok</artifactId>
+<version>1.18.30</version>
+				
+<artifactId>mysql-connector-java</artifactId>
+<version>8.0.28</version>
+			
+<artifactId>mybatis</artifactId>
+<version>3.5.10</version>
+	
+<artifactId>mybatis-spring</artifactId>
+<version>2.0.6</version>
+
+
+spring-security-core 5.5.3
+spring-security-config 5.5.3
+spring-security-web 5.5.3
+
+
+spring-jdbc 5.3.10
+spring-test 5.3.10
+
+
+db설정
+DB명 : springtest
+user : springUser
+password : mysql
+
+
+user 생성 구문
+/계정은 root / ezen
+-- database 생성
+CREATE DATABASE springtest;
+
+-- user 생성
+CREATE user 'springUser'@'localhost' IDENTIFIED BY 'mysql';
+
+-- 권한생성
+GRANT ALL PRIVILEGES ON spingtest.* TO 'springUser'@'localhost';
+
+-- 권한 설정 내용 메모리에 반영
+FLUSH PRIVILEGES;
+
+
+
+CREATE TABLE board(
+bno INT AUTO_INCREMENT,
+title VARCHAR(200),
+writer VARCHAR(200),
+content TEXT,
+isDel VARCHAR(10) DEFAULT 'N',
+reg_date DATETIME DEFAULT NOW(),
+read_count INT,
+PRIMARY KEY(bno));
+
+
+
+
+
+
+2023-12-18
+
+CREATE TABLE member(
+id VARCHAR(100) NOT NULL,
+pw VARCHAR(100) NOT NULL,
+name VARCHAR(100),
+email VARCHAR(100),
+home VARCHAR(100),
+age INT,
+reg_date DATETIME DEFAULT NOW(),
+last_login DATETIME DEFAULT NOW(),
+PRIMARY KEY(id));
+
+
+
+
+
