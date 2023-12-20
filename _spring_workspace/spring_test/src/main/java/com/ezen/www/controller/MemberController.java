@@ -63,7 +63,7 @@ public class MemberController {
 			ses.setMaxInactiveInterval(60*10); //로그인유지시간
 		}else {
 			// 로그인 실패시
-			m.addAttribute("mfg_login", "1");
+			m.addAttribute("msg_login", "1");
 		}
 		
 		return "index";

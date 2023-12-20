@@ -18,6 +18,7 @@
   	<select id="selectList" resultType="com.ezen.www.domain.BoardVO">
   		SELECT * FROM board 
   		WHERE isDel = 'N' 
+  		<include refid="search"></include>
   		ORDER BY bno DESC
   		LIMIT #{pageStart} , #{qty}
   	</select>
@@ -49,9 +50,39 @@
 	 </update>
 	 
 	 <select id="getTotalCount"	resultType="int">
-	 	select count(bno) from board where isDel='N'
+	 	SELECT count(bno) 
+	 	FROM board 
+	 	WHERE isDel='N'
+	 	<include refid="search"></include> <!-- 검색창추가할때 넣어야할것 -->
 	 </select>
 	 
+  
+  <!-- 검색할때 추가할것 -->
+  
+<!--   SELECT * FROM board WHERE isDel='N' AND (or.. or..) -->
+  
+  <sql id="search">
+  	<if test="type != null"> <!-- 검색하는값이 비어있으면 -->
+  		<trim prefix="and (" suffix=")" prefixOverrides="or"> <!-- trim안에있는  prefix , prefixOverrides 같아야한다-->
+  			<foreach collection="typeToArray" item="type"> <!-- 검색하는값이 여러가지인경우 제목&내용  -->
+  				<trim prefix="or"> <!-- suffix : 뒤에있는 or을 지운다 --> <!-- prefix : 앞에 있는 or을 지운다 -->
+  					<choose>
+  						<when test="type=='t'.toString()"> <!-- 't' 문자로 취급하지않는다. 그래서 뒤에 .toString()을 입력해야한다-->
+  							title LIKE CONCAT('%',#{keyword},'%')
+  						</when> 
+  						<when test="type=='w'.toString()"> 
+  							writer LIKE CONCAT('%',#{keyword},'%')
+  						</when> 
+  						<when test="type=='c'.toString()">
+  							content LIKE CONCAT('%',#{keyword},'%')
+  						</when> 
+  					</choose>
+  				</trim>
+  			</foreach>
+  		</trim>
+  	</if>
+  </sql>
+  
   
   
   

@@ -2,8 +2,11 @@ package com.ezen.www.repository;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.ezen.www.domain.BoardVO;
 import com.ezen.www.domain.PagingVO;
+
 
 public interface BoardDAO {
 
@@ -20,7 +23,7 @@ public interface BoardDAO {
 
 	int delete(int bno);
 
-	int getTotalCount();
+	int getTotalCount(PagingVO pgvo);
 
 
 

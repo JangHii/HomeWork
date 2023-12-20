@@ -73,5 +73,20 @@ PRIMARY KEY(id));
 
 
 
+2023-12-20
+CREATE TABLE comment(
+cno INT AUTO_INCREMENT,
+bno INT NOT NULL,
+writer VARCHAR(100) NOT NULL,
+content VARCHAR(500),
+reg_date DATETIME DEFAULT NOW(),
+PRIMARY KEY(cno));
+
+
+
+
+
+
+
 
 

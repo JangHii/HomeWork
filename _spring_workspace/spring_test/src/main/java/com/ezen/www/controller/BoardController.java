@@ -20,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 @Controller //controller를 등록해야 html에서 입력받은걸 받을수있다.
 @RequestMapping("/board/*") //board/ㅇㅇㅇ / ㅇㅇㅇ의 파일들을 가지고온다.
 @Slf4j
-
 public class BoardController {
 
 	@Inject //등록하지않으면 객체를 생성하지않음
@@ -47,14 +46,14 @@ public class BoardController {
 	// /board/list => /board/list
 	// void 처리해도 상관없음
 	@GetMapping("/list")
-	public String list(Model m , PagingVO pgvo) { //spring model 가져와야함
+	public String list(Model m , PagingVO pgvo) { // pageNo , qty , type , keyword 가져와야한다.
 		log.info(">>>>> pgvo >>>>> {}" , pgvo);
 		// 리턴타입은 목적지 경로에 대한 타입(destPage가 리턴이라고 생각)
 		// model 객체 => setAttribute 역할을 하는 객체
 		m.addAttribute("list", bsv.getList(pgvo));
 		
 		// PagingHandler 객체 다시 생성 (pgvo , totalCount)
-		int totalCount = bsv.getTotalCount();
+		int totalCount = bsv.getTotalCount(pgvo);
 		PagingHandler ph = new PagingHandler(pgvo, totalCount);
 		log.info("ph {}" + ph+">>>>>>>>>>>" +totalCount);
 		m.addAttribute("ph", ph);

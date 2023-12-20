@@ -14,6 +14,11 @@ public class PagingVO {
 	private int qty; // 한 화면에 보여줄 게시글 수 (10개)
 	
 	
+	// 검색창 만들때 추가해야할 멤버변수
+	private String type; 
+	private String keyword;
+	
+	
 	public PagingVO() {
 		this.pageNo = 1;
 		this.qty = 10;
@@ -32,6 +37,12 @@ public class PagingVO {
 	}
 	
 	
+	// 검색창 추가할때 추가해야할 생성자
+	// 여러가지의 타입을 같이 검색하기 위해서 타입을 배열로 구분
+	// get뒤의 문자는 무조건 대문자로 입력해야한다
+	public String[] getTypeToArray() {
+		return this.type == null ? new String[] {} : this.type.split("");
+	}
 	
 	
 	

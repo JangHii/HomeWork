@@ -40,7 +40,7 @@
 	}
 	
 	const msg_logout = `<c:out value="${msg_logout}"/>`;
-	if(msg_modify ==null && msg_logout === "1"){
+	if(msg_modify != "1" && msg_logout === "1"){
 		alert("로그아웃 되었습니다~!!!");
 	}
 	
