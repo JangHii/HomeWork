@@ -8,14 +8,29 @@
   <mapper namespace="com.ezen.www.repository.CommentDAO">
   
   
+  <insert id="insert">
+  	INSERT INTO comment (bno , writer , content)
+  	VALUES(#{bno} , #{writer} , #{content})
+  </insert>
   
   
+  <select id="getList" resultType="com.ezen.www.domain.CommentVO">
+  	SELECT * FROM comment
+  	WHERE bno=#{bno}
+  </select>
   
   
+  <update id="delete" parameterType="int">
+  	DELETE FROM comment
+  	WHERE cno=#{cno}
+  </update>
   
   
-  
-  
+  <update id="modify">
+  	UPDATE comment SET
+  	content=#{content}
+  	WHERE cno=#{cno}
+  </update>
   
   
   </mapper>
