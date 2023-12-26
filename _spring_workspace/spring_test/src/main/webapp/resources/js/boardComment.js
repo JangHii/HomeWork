@@ -21,7 +21,7 @@ document.getElementById("cmtAddBtn").addEventListener('click',()=>{
             if(result === '1'){
                 alert("댓글이 등록되었습니다.");
                 // 화면에 뿌리기
-                getCommentList(bnoVal);
+                spreadCommentList(bnoVal);
             }
         })
     }

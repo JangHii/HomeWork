@@ -1,5 +1,7 @@
 package com.ezen.www.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -8,10 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ezen.www.domain.BoardVO;
+import com.ezen.www.domain.FileVO;
 import com.ezen.www.domain.PagingVO;
+import com.ezen.www.handler.FileHandler;
 import com.ezen.www.handler.PagingHandler;
 import com.ezen.www.service.BoardService;
 
@@ -25,16 +30,37 @@ public class BoardController {
 	@Inject //등록하지않으면 객체를 생성하지않음
 	private BoardService bsv; //service폴더의 interface로 생성하기
 	
+	@Inject
+	private FileHandler fhd;
+	
 	// 경로와 리턴의 값이 같을경우 생략가능
 	// /board/register => / board/register
 	@GetMapping("/register")
 	public void register() {}
 	
-	//@RequestParam("name")String name : 파라미터 받을때
+	// @RequestParam("name")String name : 파라미터 받을때
+	// required : 필수여부 (false) : 파라미터가 없어도 예외가 발생하지 않음
 	@PostMapping("/register")
-	public String register(BoardVO bvo) {
+	public String register(BoardVO bvo , @RequestParam(name="files" , required = false) MultipartFile[] files) {
 		log.info(">>>>> bvo >>>>> {}" , bvo);
-		int isOk = bsv.register(bvo);
+		log.info(">>>>> files >>>>> {}" , files.toString());
+		
+		// 파일 핸들러 처리
+		List<FileVO> flist = null;
+		
+		// 파일이 있을경우만 fhd를 호출
+		if(files[0].getSize() > 0) {
+			flist = fhd.uploadFiles(files);
+			log.info(">>>>> flist >>>>> {}" , flist);
+		}
+		
+		
+		
+		
+		
+		
+		
+//		int isOk = bsv.register(bvo);
 		
 		// 목적지 경로
 		// redirect : BoardController에 list를 한번 훝고 뿌린다.
