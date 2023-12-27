@@ -56,6 +56,15 @@
 	 	<include refid="search"></include> <!-- 검색창추가할때 넣어야할것 -->
 	 </select>
 	 
+	 <select id="selectBno" resultType="int">
+	 	SELECT MAX(bno)
+	 	FROM board
+	 	<!-- SELECT bno 
+	 	FROM board 
+	 	ORDER BY bno 
+	 	DESC LIMIT 0 -->
+	 </select>
+	 
   
   <!-- 검색할때 추가할것 -->
   
