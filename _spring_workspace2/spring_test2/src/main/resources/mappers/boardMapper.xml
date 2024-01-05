@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- https://mybatis.org/mybatis-3/ko/getting-started.html 에서 가져와야한다. -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.myweb.www.repository.BoardDAO">
+  
+  <insert id="insert">
+  	INSERT INTO board(title , writer , content)
+  	VALUES(#{title} , #{writer} , #{content})
+  </insert>
+  
+  <select id="getList" resultType="com.myweb.www.domain.BoardVO">
+  	SELECT * FROM board 
+  	ORDER BY bno DESC
+  </select>
+  
+  <select id="getDetail" resultType="com.myweb.www.domain.BoardVO">
+  	SELECT * FROM board
+  	WHERE bno=#{bno}
+  </select>
+  
+  <update id="upCount">
+  	UPDATE board
+  	SET read_count = read_count +1
+  	WHERE bno=#{bno}
+  </update>
+  
+  <update id="getModify">
+  	UPDATE board
+  	SET title=#{title},
+  	content=#{content},
+	mod_at=now(),
+	read_count=read_count-2
+	WHERE bno=#{bno}
+  </update>
+  
+  <delete id="delete">
+  	DELETE FROM board
+  	WHERE bno=#{bno}
+  </delete>
+  
+  
+  
+  </mapper>

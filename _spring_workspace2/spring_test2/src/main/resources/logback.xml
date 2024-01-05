@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 기존 lo4j.xml을 지우고 logback.xml만 남겨놓는다 -->
+
+<configuration debug="true">
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+  
+    <encoder>
+      <pattern>%d %5p [%c] %msg%n</pattern>
+    </encoder>
+    
+  </appender>
+  
+  <!-- log추가 -->
+  <logger name="com.mywep.www" level="info" appender-ref="STDOUT"></logger>
+  <logger name="org.springframework" level="info" appender-ref="STDOUT"></logger>
+  <logger name="org.springframework.jdbc" level="info" appender-ref="STDOUT"></logger>
+  <logger name="jdbc.sqlonly" level="info" appender-ref="STDOUT"></logger>
+  <logger name="jdbc.resultsettable" level="info" appender-ref="STDOUT"></logger> <!-- 결과 -->
+
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+  </root>
+  
+</configuration>
