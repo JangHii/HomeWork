@@ -1,6 +1,9 @@
 package com.myweb.www.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -17,6 +20,8 @@ public class ServletConfiguration implements WebMvcConfigurer{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// resources 경로 설정 / 나중에 파일 업로드 경로 설정 추가
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		// 파일 업로드 실제 경로
+		registry.addResourceHandler("/upload/**").addResourceLocations("/file:///D:\\_myProject\\_java\\_fileUpload\\");
 	}
 
 	@Override
@@ -31,5 +36,11 @@ public class ServletConfiguration implements WebMvcConfigurer{
 	}
 	
 	// multipartResolver 설정
+	// Bean 이름이 반드시 multipartResolver 로 해야한다.
+	@Bean(name ="multipartResolver") // (name ="multipartResolver")은 생략이 가능하다
+	public MultipartResolver getmultipartResolver() {
+		StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
+		return multipartResolver;
+	}
 	
 }

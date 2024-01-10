@@ -33,6 +33,27 @@ PRIMARY KEY (bno));
 
 
 
+---------2024-01-08---------
+
+CREATE TABLE comment (
+cno BIGINT AUTO_INCREMENT,
+bno BIGINT NOT NULL,
+writer VARCHAR(100) NOT NULL,
+content TEXT NOT NULL,
+reg_at DATETIME DEFAULT NOW(),
+mod_at DATETIME DEFAULT NOW(),
+PRIMARY KEY(cno));
 
 
+
+------------2024-01-10---------
+CREATE TABLE file(
+uuid VARCHAR(256) NOT NULL,
+save_dir VARCHAR(256) NOT NULL,
+file_name VARCHAR(256) NOT NULL,
+file_type THINYINT(1) DEFAULT 0,
+bno BIGINT,
+file_size BIGINT,
+reg_at DATETIME DEFAULT NOW()
+PRIMARY KEY(uuid)); 
 

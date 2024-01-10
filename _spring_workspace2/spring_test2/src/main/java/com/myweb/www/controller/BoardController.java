@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.myweb.www.domain.BoardDTO;
 import com.myweb.www.domain.BoardVO;
+import com.myweb.www.domain.FileVO;
+import com.myweb.www.domain.PagingVO;
+import com.myweb.www.handler.FileHandler;
+import com.myweb.www.handler.PagingHandler;
 import com.myweb.www.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,23 +35,39 @@ public class BoardController {
 
 	private final BoardService bsv;
 	
+	private final FileHandler fh;
+	
 	
 	@GetMapping("/register")
 	public void register() {}
 	
 	@PostMapping("/register")
-	public String insert(BoardVO bvo) {
+	public String insert(BoardVO bvo , @RequestParam(name = "files" , required = false)MultipartFile[] files) {
 		log.info(">>>>> bvo >>>>> {}" , bvo);
+		List<FileVO> flist = null;
 		
-		int isOk = bsv.insert(bvo);
+		// fileHandler 생성 / multpartfile -> flist
+		if(files[0].getSize() > 0) {
+			flist = fh.uploadFiles(files);
+		}
 		
+		int isOk = bsv.insert(new BoardDTO(bvo , flist));
 		return "index";
 	}
 	
 	@GetMapping("/list")
-	public void list(Model m) {
-		List<BoardVO> list = bsv.getList();
+	public void list(Model m , PagingVO pgvo) {
+		log.info(">>>>> PagingVO >>>>> {}" , pgvo);
+		
+		// 페이징처리
+		List<BoardVO> list = bsv.getList(pgvo);
+		
+		//totalCount 구하기
+		int totalCount = bsv.getTotalCount(pgvo);
+		PagingHandler ph = new PagingHandler(pgvo , totalCount);
+		
 		m.addAttribute("list", list);
+		m.addAttribute("ph", ph);
 		
 	}
 	
@@ -55,7 +77,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(@ModelAttribute("BoardVO") BoardVO bvo , Model m ) {
+	public String modify(BoardVO bvo) {
 		log.info(">>>>> bvo >>>>> {}" , bvo);
 		
 		bsv.getModify(bvo);
