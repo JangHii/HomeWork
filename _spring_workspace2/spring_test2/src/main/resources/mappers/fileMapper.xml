@@ -10,9 +10,15 @@
 	</insert>
 
 
+	<select id="getFileList" resultType="com.myweb.www.domain.FileVO">
+		SELECT * FROM file 
+		WHERE bno = #{bno}
+	</select>
 
-
-
+	<delete id="fileDelete">
+		DELETE FROM file
+		WHERE uuid=#{uuid}
+	</delete>
 
 
 

@@ -17,7 +17,6 @@ import lombok.extern.slf4j.Slf4j;
 @ContextConfiguration(classes = {com.myweb.www.config.RootConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 @Slf4j 
-
 public class BoardTest {
 
 	@Inject

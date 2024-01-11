@@ -6,74 +6,69 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
 <div class="container-md">
+<c:set value="${bdto.bvo }" var="bvo" ></c:set>
+
 	<br>
 	<h2>Board Detail Page</h2>
 	<br>
 	<div class="mb-3">
-		<label for="bno" class="form-label">#</label> <input type="text"
+		<label for="bno" class="form-label">번호</label> <input type="text"
 			name="bno" class="form-control" id="bno" value="${bvo.bno }"
 			readonly="readonly">
 	</div>
 	<div class="mb-3">
-		<label for="title" class="form-label">Title</label> <input type="text"
+		<label for="title" class="form-label">제목</label> <input type="text"
 			name="title" class="form-control" id="title" placeholder="title"
 			value="${bvo.title }">
 	</div>
 	<div class="mb-3">
-		<label for="writer" class="form-label">writer</label> <input
+		<label for="writer" class="form-label">작성자</label> <input
 			type="text" name="writer" class="form-control" id="writer"
 			value="${bvo.writer }" readonly="readonly">
 	</div>
 	<div class="mb-3">
-		<label for="regAt" class="form-label">regdate</label> <input
+		<label for="regAt" class="form-label">작성일</label> <input
 			type="text" name="regAt" class="form-control" id="regAt"
 			value="${bvo.regAt }" readonly="readonly"> <span
 			class="badge bg-secondary">${bvo.readCount}</span>
 	</div>
 	<div class="mb-3">
-		<label for="content" class="form-label">content</label>
+		<label for="content" class="form-label">내용</label>
 		<textarea class="form-control" name="content" id="content" rows="3">${bvo.content }</textarea>
 	</div>
 
 	<!-- 파일 표시 라인 -->
-<%-- 	<c:set value="${boardDTO.flist }" var="flist" />
-	<div class="mb-3">
-		<ul class="list-group list-group-flush">
-		<!-- 파일 개수만큼 li를 추가하여 파일을 표시, 타입이 1인 경우만 표시 -->
-		<!-- 
-			li -> div => img 그림표시
-				  div => 파일이름, 작성일, span size
-		 -->
-		 <!-- 파일 리스트 중 하나만 가져와서 fvo로 저장 -->
-		 <c:forEach items="${flist }" var="fvo">
-		 <div>
-			<li class="list-group-item">
-				<c:choose>
-					<c:when test="${fvo.file_type > 0 }">
-						<div>
-						<!-- /upload/ -> servlet-context에 매핑 설정되어 있어서 사용함 -->
-						<!-- /upload/save_dir/uuid_file_name -->
-						<!-- 썸네일 버전 : src="/upload/${fn:replace(fvo.save_dir, '\\', '/') }/${fvo.uuid}_th_${fvo.file_name}" -->
-							<img alt="" src="/upload/${fn:replace(fvo.save_dir, '\\', '/') }/${fvo.uuid}_${fvo.file_name}">
-						</div>
-					</c:when>
-					<c:otherwise>
-						<div>
-							<!-- 아이콘 같은 모양 하나 가져와서 넣기 -->
-						</div>
-					</c:otherwise>
-				</c:choose>
-				<div>
-				<!-- div => 파일이름, 작성일, span size -->
-					<div>${fvo.file_name }</div>
-					<div>${fvo.reg_date }</div>
-					<div><span class="badge text-bg-warning">${fvo.file_size }byte</span></div>
-				</div>
-			</li>
-			</div>
-		</c:forEach>
-		</ul>
-		--%>
+	<c:set value="${bdto.flist}" var="flist"></c:set>
+		<div class="mb-3">
+			<label for="f" class="form-label">File</label>
+				<ul class="list-group list-group-flush">
+					<c:forEach items="${flist}" var="fvo">
+  						<li class="list-group-item">
+  						
+  							<c:choose>
+  								<c:when test="${fvo.fileType == 1}">
+  									<img alt="" src="/upload/${fvo.saveDir}/${fvo.uuid}_th_${fvo.fileName}">
+  								</c:when>
+  								
+  								<c:otherwise>
+  									<div>
+  										<!-- 일반 파일 표시할 아이콘 -->
+  										<a href="/upload/${fvo.saveDir}/${fvo.uuid }_${fvo.fileName}" download=${fvo.fileName}>
+  											<i class="bi bi-file-earmark-arrow-down"></i>
+										</a>
+  									</div>
+  								</c:otherwise>
+  							</c:choose>
+  							
+  							<div class="ms-2 me-auto">
+  								<div class="fw-bold">${fvo.fileName }</div>
+  								<span class="badge text-bg-secondary">${fvo.fileSize } </span>
+  							</div>
+  						</li>
+  					</c:forEach>
+				</ul>
+		</div>
+
 		<br><br>
 	<div class="position-relative">
 	<div class="position-absolute bottom-0 end-0">
@@ -126,38 +121,6 @@
     		</div>
   		</div>
 	</div>
-	
-	
-	<%--
-	<hr>
-	<!-- 댓글 등록 라인 -->
-	<div class="input-group">
-		<span id="cmtWriter" class="input-group-text">${ses.id }</span> <input
-			type="text" id="cmtText" class="form-control"
-			aria-label="Recipient's username" aria-describedby="button-addon2"
-			placeholder="Add Comment...">
-		<button class="btn btn-outline-secondary" type="button" id="cmtAddBtn">Add</button>
-	</div>
-	<br>
-
-	<!-- 댓글 표시 라인 -->
-	<div class="accordion" id="accordionExample">
-		<div class="accordion-item">
-			<h2 class="accordion-header">
-				<button class="accordion-button" type="button"
-					data-bs-toggle="collapse" data-bs-target="#collapseOne"
-					aria-expanded="true" aria-controls="collapseOne">cno,
-					writer, ref_date</button>
-			</h2>
-			<div id="collapseOne" class="accordion-collapse collapse show"
-				data-bs-parent="#accordionExample">
-				<div class="accordion-body">
-					<strong>Add comment...</strong>
-				</div>
-			</div>
-		</div>
-	</div> --%>
-
 
 
 </div>
@@ -166,7 +129,7 @@
 
 
 <script type="text/javascript">
-let bnoVal = `<c:out value="${bvo.bno}" />`;
+let bnoVal = `<c:out value="${bdto.bvo.bno}" />`;
 console.log(bnoVal);
 </script>
 <script src="/resources/js/boardComment.js"></script>

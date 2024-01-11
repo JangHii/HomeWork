@@ -45,6 +45,8 @@
 			<th scope="col">글번호</th>
 			<th scope="col">글제목</th>
 			<th scope="col">작성자</th>
+			<th scope="col">댓글수</th>
+			<th scope="col">파일수</th>
 			<th scope="col">작성날짜</th>
 			<th scope="col">조회수</th>
 		</tr>
@@ -55,6 +57,8 @@
 				<th scope="row">${bvo.bno }</th>
 				<td><a href="/board/detail?bno=${bvo.bno }">${bvo.title }</a></td>
 				<td>${bvo.writer }</td>
+				<td>${bvo.cmtQty }</td>
+				<td>${bvo.hasFile}</td>
 				<td>${bvo.regAt}</td>
 				<td>${bvo.readCount }</td>
 			</tr>
